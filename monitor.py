@@ -17,6 +17,7 @@ currentState = requests.get(zmCheckEndpoint)
  
 if currentState.status_code == 200:
     data = json.loads(currentState.text)
-    print data['name']
+    print ("Active Status: ")
+    print data['states'][0]['State']['isActive']
 else:
    print 'An error occurred querying the API'
