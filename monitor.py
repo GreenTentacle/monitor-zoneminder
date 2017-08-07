@@ -8,16 +8,17 @@ import json
 # curl -XPOST  http://server/zm/api/states/change/stop.json #Stops ZM
 # curl -XPOST  http://server/zm/api/states/change/start.json #Starts ZM
 
-zmBaseURI = 'http://zoneminder.com/zm'
+zmBaseURI = 'http://zoneminder/zm'
 zmAPIURI = '/'.join((zmBaseURI,'api'))
 zmCheckEndpoint = '/'.join((zmAPIURI,'states.json'))
 zmStartEndpoint = '/'.join((zmAPIURI,'states/change/start.json'))
 
 currentState = requests.get(zmCheckEndpoint)
- 
+
 if currentState.status_code == 200:
     data = json.loads(currentState.text)
     print ("Active Status: ")
-    print data['states'][0]['State']['isActive']
+    print data['states'][0]['State']['IsActive']
 else:
    print 'An error occurred querying the API'
+   print currentState.status_code
